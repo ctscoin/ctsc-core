@@ -1,0 +1,26 @@
+[Unit]
+Description=CTSC's distributed currency daemon
+After=network.target
+
+[Service]
+User=ctsc
+Group=ctsc
+
+Type=forking
+PIDFile=/var/lib/ctscd/ctscd.pid
+
+ExecStart=/usr/bin/ctscd -daemon -pid=/var/lib/ctscd/ctscd.pid \
+          -conf=/etc/ctscoin/ctsc-core.conf -datadir=/var/lib/ctscd
+
+ExecStop=-/usr/bin/ctsc-cli -conf=/etc/ctscoin/ctsc-core.conf \
+         -datadir=/var/lib/ctscd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

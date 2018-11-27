@@ -1,0 +1,6 @@
+usr/local/bin/ctsc-qt usr/bin
+share/pixmaps/bitcoin32.xpm usr/share/pixmaps
+share/pixmaps/bitcoin16.xpm usr/share/pixmaps
+share/pixmaps/bitcoin128.png usr/share/pixmaps
+debian/ctsc-qt.desktop usr/share/applications
+debian/ctsc-qt.protocol usr/share/kde4/services/

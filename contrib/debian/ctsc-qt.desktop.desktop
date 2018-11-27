@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=CTSC
+Comment=CTSC P2P Cryptocurrency
+Exec=ctsc-qt %u
+Terminal=false
+Type=Application
+Icon=cts128
+MimeType=x-scheme-handler/ctsc;
+Categories=Office;Finance;
+Name[en_US]=ctsc-qt.desktop
