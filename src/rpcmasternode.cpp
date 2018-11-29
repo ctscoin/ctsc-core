@@ -211,6 +211,8 @@ UniValue listmasternodes(const UniValue& params, bool fHelp)
             "[\n"
             "  {\n"
             "    \"rank\": n,           (numeric) Masternode Rank (or 0 if not enabled)\n"
+            "    \"network\": n,           (string) Masternode network\n"
+            "    \"netAddr\": n,           (string) Masternode IP and port.\n"
             "    \"txhash\": \"hash\",    (string) Collateral transaction hash\n"
             "    \"outidx\": n,         (numeric) Collateral transaction output index\n"
             "    \"status\": s,         (string) Status (ENABLED/EXPIRED/REMOVE/etc)\n"
@@ -248,14 +250,17 @@ UniValue listmasternodes(const UniValue& params, bool fHelp)
                 CBitcoinAddress(mn->pubKeyCollateralAddress.GetID()).ToString().find(strFilter) == string::npos) continue;
 
             std::string strStatus = mn->Status();
+
             std::string strHost;
             int port;
-            SplitHostPort(mn->addr.ToString(), port, strHost);
+            std::string strAddress = mn->addr.ToString();
+            SplitHostPort(strAddress, port, strHost);
             CNetAddr node = CNetAddr(strHost, false);
             std::string strNetwork = GetNetworkName(node.GetNetwork());
 
             obj.push_back(Pair("rank", (strStatus == "ENABLED" ? s.first : 0)));
             obj.push_back(Pair("network", strNetwork));
+            obj.push_back(Pair("netAddr", strAddress));
             obj.push_back(Pair("txhash", strTxHash));
             obj.push_back(Pair("outidx", (uint64_t)oIdx));
             obj.push_back(Pair("status", strStatus));
