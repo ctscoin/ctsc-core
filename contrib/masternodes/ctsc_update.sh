@@ -8,6 +8,9 @@ COIN_CLI='ctsc-cli'
 COIN_TGZ='https://github.com/ctscoin/ctsc-core/releases/download/v1.1.0/CTSC-v1.1.0-linux-x86_64.tar.gz'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 
 function download_node() {
   echo -e "Preparing to download updated $COIN_NAME binaries..."
