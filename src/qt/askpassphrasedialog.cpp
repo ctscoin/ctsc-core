@@ -73,7 +73,8 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         break;
     }
 
-    ui->stakingCheckBox->setChecked(model->isStakingOnlyUnlocked());
+    // default to checked unless already unlocked for staking
+    ui->stakingCheckBox->setChecked(!model->isStakingOnlyUnlocked());
 
     textChanged();
     connect(ui->passEdit1, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
