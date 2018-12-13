@@ -1,12 +1,15 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
+IMG_FILE='DuAiBSwV4AACVAA.ansi.txt'
 CONFIG_FILE='ctsc.conf'
 CONFIGFOLDER='/root/.ctsc'
 COIN_DAEMON='ctscd'
 COIN_CLI='ctsc-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ='https://github.com/ctscoin/ctsc-core/releases/download/v1.1.0/CTSC-v1.1.0-linux-x86_64.tar.gz'
+COIN_BOOTSTRAP='https://raw.githubusercontent.com/ctscoin/ctsc-core/master/contrib/masternodes/ctsc-bootstrap.tar.gz'
+BOOTSTRAP_ZIP=$(echo $COIN_BOOTSTRAP | awk -F'/' '{print $NF}')
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='CTSC'
 COIN_PORT=51527
@@ -19,7 +22,7 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 function download_node() {
-  echo -e "Preparing to download $COIN_NAME binaries"
+  echo -e "Preparing to download updated $COIN_NAME binaries..."
   cd $TMP_FOLDER
   wget -q $COIN_TGZ
   tar xvzf $COIN_ZIP -C /usr/local/bin/ --strip=1
@@ -27,7 +30,6 @@ function download_node() {
   chmod +x $COIN_PATH$COIN_DAEMON $COIN_PATH$COIN_CLI
   cd - >/dev/null 2>&1
   rm -r $TMP_FOLDER >/dev/null 2>&1
-  clear
 }
 
 function configure_systemd() {
@@ -254,14 +256,125 @@ function setup_node() {
   enable_firewall
   important_information
   configure_systemd
+exit 1
+}
+function user_input() {
+    NORMAL=`echo "\033[m"`
+    MENU=`echo "\033[36m"` #Blue
+    NUMBER=`echo "\033[33m"` #yellow
+    FGRED=`echo "\033[41m"`
+    RED_TEXT=`echo "\033[31m"`
+    ENTER_LINE=`echo "\033[33m"`
+
+    echo -e "${MENU}*********************************************${NORMAL}"
+    echo -e "${MENU}****Welcome to the CTSC Masternode setup****${NORMAL}"
+    echo -e "${MENU}*********************************************${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 1)${MENU} Install New Masternode               **${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 2)${MENU} Update Node                          **${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 3)${MENU} Resync with Bootstrap                **${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 4)${MENU} Resync without Bootstrap             **${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 5)${MENU} Exit                                 **${NORMAL}"
+    echo -e "${MENU}*********************************************${NORMAL}"
+    echo -e "${ENTER_LINE}Enter option and press enter. ${NORMAL}"
+    read opt </dev/tty
+    menu_loop
+
 }
 
+function menu_loop() {
 
-##### Main #####
-clear
+while [ opt != '' ]
+    do
+        case $opt in
+        1)newInstall;
+        ;;
+        2)UpdateNode;
+        ;;
+        3)resync_bootstrap;
+        ;;
+        4)resync_no_bootstrap;
+        ;;
+        5)echo -e "Exiting...";sleep 1;exit 0;
+        ;;
+        \n)exit 0;
+        ;;
+        *)clear;
+        "Pick an option from the menu";
+        user_input;
+        ;;
+    esac
+done
+}
 
+function resync_no_bootstrap() {
+echo -e "${RED}Stopping $COIN_DAEMON...${NC}"
+systemctl stop ${COIN_NAME^^}.service
+echo -e "${RED}Sleeping for 20 seconds...${NC}";
+sleep 20
+cd $CONFIGFOLDER
+echo -e "${YELLOW}Clearing existing files...${NC}"
+mv wallet{.dat,.keep}
+mv ${COIN_NAME,,}{.conf,.keep}
+rm -rf *.conf *.dat *.log blocks chainstate backups database sporks .lock -r
+mv wallet{.keep,.dat}
+mv ${COIN_NAME,,}{.keep,.conf}
+ls -al
+sleep 5
+echo -e "${YELLOW}Starting $COIN_DAEMON...${NC}"
+systemctl start ${COIN_NAME^^}.service
+echo -e "${GREEN}${COIN_NAME^^} Masternode refreshed!${NC}"
+exit 1
+}
+
+function resync_bootstrap() {
+echo -e "${RED}Stopping $COIN_DAEMON...${NC}"
+systemctl stop ${COIN_NAME^^}.service
+echo -e "${RED}Sleeping for 20 seconds...${NC}";
+sleep 20
+cd $CONFIGFOLDER
+echo -e "${YELLOW}Clearing existing files...${NC}"
+mv wallet{.dat,.keep}
+mv ${COIN_NAME,,}{.conf,.keep}
+rm -rf *.conf *.dat *.log blocks chainstate backups database sporks .lock -r
+mv wallet{.keep,.dat}
+mv ${COIN_NAME,,}{.keep,.conf}
+ls -al
+sleep 1
+download_bootstrap
+sleep 1
+echo -e "${YELLOW}Starting $COIN_DAEMON...${NC}"
+systemctl start ${COIN_NAME^^}.service
+echo -e "${GREEN}${COIN_NAME^^} Masternode refreshed!${NC}"
+exit 1
+}
+
+function download_bootstrap() {
+cd $CONFIGFOLDER
+echo -e "Downloading Bootstrap"
+#wget -q $COIN_BOOTSTRAP
+tar -xzvf $BOOTSTRAP_ZIP
+rm $BOOTSTRAP_ZIP
+}
+
+function newInstall() {
 checks
 prepare_system
 create_swap
 download_node
 setup_node
+exit 1
+}
+
+function UpdateNode() {
+echo -e "Stopping CTSC Service"
+systemctl stop $COIN_NAME.service
+download_node
+  systemctl start $COIN_NAME.service
+  echo -e "${GREEN}$COIN_NAME Masternode has been updated!${NC}"
+exit 1
+}
+
+
+##### Main #####
+clear
+user_input
