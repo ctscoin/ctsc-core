@@ -351,7 +351,7 @@ exit 1
 function download_bootstrap() {
 cd $CONFIGFOLDER
 echo -e "Downloading Bootstrap"
-#wget -q $COIN_BOOTSTRAP
+wget -q $COIN_BOOTSTRAP
 tar -xzvf $BOOTSTRAP_ZIP
 rm $BOOTSTRAP_ZIP
 }
