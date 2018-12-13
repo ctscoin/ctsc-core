@@ -4,7 +4,7 @@ CTSC Core is a decentralized, peer-to-peer cryptocurrency with a primary focus o
 
 Furthermore, as result of offering multiple ways for users to mint new CTSC coins, the network is a lot less centralized than some Proof-of-Work coins that have their hashrates dominated by one or two mining pools.
 
-### View the CTSC whitepaper here: Coming Soon...
+[View the CTSC whitepaper here](http://ctscoin.net/wp-content/uploads/2018/11/Whitepaper.pdf)
 
 #
 ## Coin Specs 
