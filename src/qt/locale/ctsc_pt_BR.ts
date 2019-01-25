@@ -3347,8 +3347,8 @@ Favor verificar o endereço e tente novamente.</translation>
         <translation>Todos os direitos reservados (C) 2015-%i aos Desenvolvedores do PIVX Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2017-%i The CTSC Core Developers</source>
-        <translation>Todos os direitos reservados (C) 2017-%i aos Desenvolvedores do CTSC Core</translation>
+        <source>Copyright (C) 2018-%i The CTSC Core Developers</source>
+        <translation>Todos os direitos reservados (C) 2018-%i aos Desenvolvedores do CTSC Core</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
