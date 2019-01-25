@@ -10,7 +10,7 @@ CONFIGFOLDER='/root/.ctsc'
 COIN_DAEMON='ctscd'
 COIN_CLI='ctsc-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ='https://github.com/ctscoin/ctsc-core/releases/download/v1.1.0/CTSC-v1.1.0-linux-x86_64.tar.gz'
+COIN_TGZ='https://github.com/ctscoin/ctsc-core/releases/download/v1.2.0/CTSC-v1.2.0-linux-x86_64.tar.gz'
 COIN_BOOTSTRAP='https://raw.githubusercontent.com/ctscoin/ctsc-core/master/contrib/masternodes/ctsc-bootstrap.tar.gz'
 BOOTSTRAP_ZIP=$(echo $COIN_BOOTSTRAP | awk -F'/' '{print $NF}')
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
@@ -57,6 +57,7 @@ StartLimitBurst=5
 WantedBy=multi-user.target
 EOF
 
+  download_bootstrap
   systemctl daemon-reload
   sleep 3
   systemctl start $COIN_NAME.service

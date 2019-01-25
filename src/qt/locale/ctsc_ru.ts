@@ -2940,8 +2940,8 @@ Please check the address and try again.</source>
         <translation>Copyright (C) 2015-%i Разработчики PIVX Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2017-%i The CTSC Core Developers</source>
-        <translation>Copyright (C) 2017-%i Разработчики CTSC Core</translation>
+        <source>Copyright (C) 2018-%i The CTSC Core Developers</source>
+        <translation>Copyright (C) 2018-%i Разработчики CTSC Core</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>

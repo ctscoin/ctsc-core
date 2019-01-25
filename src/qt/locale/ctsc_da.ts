@@ -3892,8 +3892,8 @@ For eksempel: alertnotify=Echo %% | mail - s "CTSC ALARM!" e-mail@administrator.
         <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2017-%i The CTSC Core Developers</source>
-        <translation>Copyright (C) 2017-%i The CTSC Core Developers</translation>
+        <source>Copyright (C) 2018-%i The CTSC Core Developers</source>
+        <translation>Copyright (C) 2018-%i The CTSC Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
