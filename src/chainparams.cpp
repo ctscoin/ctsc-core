@@ -37,20 +37,27 @@ struct SeedSpec6 {
 // CTSC: 2018-11-02 22:06:38 UpdateTip: new best=74cac5790bfb5a0991a1e93233436358a2eab4f0fd8564d2af32397f38687340  height=775  log2_work=42.210303  tx=1111  date=2018-11-02 22:07:23 progress=1.000234  cache=663
 // CTSC: 2018-11-03 03:57:19 UpdateTip: new best=e3f27cf0eef836e8872521430a60b5a153d6639fdd09575847fee7a0d004541e  height=1250  log2_work=54.302405  tx=2061  date=2018-11-03 03:57:36 progress=1.000048  cache=21
 // CTSC: 2018-11-03 16:53:13 UpdateTip: new best=d083d834a2180c4745742233d6f4e2281432bf5b84b78bc4c9009f589bb8c229  height=2025  log2_work=56.739531  tx=3615  date=2018-11-03 16:53:50 progress=1.000059  cache=39
+// CTSC: 2019-02-03 03:36:23 UpdateTip: new best=891010da4875164e17711365d0f2dd05f36db556981345aea3cf546fc03d2dd8  height=132460  log2_work=64.800886  tx=276884  date=2019-02-03 03:36:43 progress=1.000000  cache=381
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
     (0, uint256("0x00000650aaea7384d7c1576f59777f391f924195ae21fd23e5348c921315226b"))
     (350, uint256("0x0000022a395f7e7f9d5c0842144d85f7ec9cee0646be2afe82d9747d32fce8c6"))
     (775, uint256("0x74cac5790bfb5a0991a1e93233436358a2eab4f0fd8564d2af32397f38687340"))
     (1250, uint256("0xe3f27cf0eef836e8872521430a60b5a153d6639fdd09575847fee7a0d004541e"))
-    (2025, uint256("0xd083d834a2180c4745742233d6f4e2281432bf5b84b78bc4c9009f589bb8c229"));
+    (2025, uint256("0xd083d834a2180c4745742233d6f4e2281432bf5b84b78bc4c9009f589bb8c229"))
+    (10000, uint256("0x2c9b0a7c52ff72002fc029971c56b3efe7d7e29c4be885cdfd2e151e71ef8fc2"))
+    (25000, uint256("0xf44bb4e64b3b43aa4af7fa6835065132aa7982abaf917399f75e97008e9b300f"))
+    (50000, uint256("0x768e3ba6c5a9356a521eb04d832a855f0a74dcf1c6db5879774719fbb45720a3"))
+    (100000, uint256("0x6e49d1f090824c8e04a09050c2fe2adf23c60d6f5face85fcff29317ffdebd88"))
+    (130000, uint256("0xf4bbffa9ed379590fb019f25c87949014dc25bc47faea78dac9a3399387d8b2f"))
+    (132460, uint256("0x891010da4875164e17711365d0f2dd05f36db556981345aea3cf546fc03d2dd8"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1541264030,     // * UNIX timestamp of last checkpoint block (the date=)
-    3615,              // * total number of transactions between genesis and last checkpoint
+    1549165003,     // * UNIX timestamp of last checkpoint block (the date=)
+    276884,              // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
-    250             // * estimated number of transactions per day after checkpoint
+    1000             // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =

@@ -135,3 +135,4 @@ qa/pull-tester/test.*/*
 /nbproject/
 CTSC-Qt.app/Contents/MacOS/CTSC-Qt
 dist/CTSC-Qt.app/Contents/MacOS/CTSC-Qt
+configure.1.ac
