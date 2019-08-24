@@ -114,7 +114,7 @@ static void InitMessage(SplashScreen* splash, const std::string& message)
         Qt::QueuedConnection,
         Q_ARG(QString, QString::fromStdString(message)),
         Q_ARG(int, Qt::AlignBottom | Qt::AlignHCenter),
-        Q_ARG(QColor, QColor(249, 248, 102)));
+        Q_ARG(QColor, QColor(32, 168, 216)));
 }
 
 static void ShowProgress(SplashScreen* splash, const std::string& title, int nProgress)
