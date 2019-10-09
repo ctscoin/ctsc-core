@@ -86,7 +86,6 @@ Makefile
 ctsc-qt
 CTSC-Qt.app
 CTSC-Qt.dmg
-background.tiff*
 
 # Unit-tests
 Makefile.test
@@ -131,3 +130,11 @@ libbitcoinconsensus.pc
 .idea
 CMakeLists.txt
 cmake-build-debug
+
+src/leveldb/build_config.mk
+src/univalue/build-aux/
+src/univalue/pc/libunivalue-uninstalled.pc
+src/univalue/pc/libunivalue.pc
+src/univalue/stamp-h1
+src/univalue/univalue-config.h
+src/univalue/univalue-config.h.in

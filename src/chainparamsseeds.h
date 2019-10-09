@@ -1,5 +1,5 @@
 // Copyright (c) 2018 The Cryptonodes developers
-// Copyright (c) 2018 The CTSC developers
+// Copyright (c) 2018-2019 The CTSC developers
 
 #ifndef BITCOIN_CHAINPARAMSSEEDS_H
 #define BITCOIN_CHAINPARAMSSEEDS_H
