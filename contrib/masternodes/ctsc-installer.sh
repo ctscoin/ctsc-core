@@ -11,7 +11,7 @@ COIN_DAEMON='ctscd'
 COIN_CLI='ctsc-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ='https://github.com/ctscoin/ctsc-core/releases/download/v1.1.2/CTSC-v1.1.2-linux-x86_64.tar.gz'
-COIN_BOOTSTRAP='https://raw.githubusercontent.com/ctscoin/ctsc-core/master/contrib/masternodes/ctsc-bootstrap.tar.gz'
+COIN_BOOTSTRAP='https://storage.vpscoins.com/f/9020e24ea86b4fcfa369/ctsc-bootstrap.zip'
 BOOTSTRAP_ZIP=$(echo $COIN_BOOTSTRAP | awk -F'/' '{print $NF}')
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='CTSC'
@@ -367,9 +367,10 @@ exit 1
 
 function download_bootstrap() {
 cd $CONFIGFOLDER
+apt-get -qq install unzip
 echo -e "Downloading Bootstrap"
 wget -q $COIN_BOOTSTRAP
-tar -xzvf $BOOTSTRAP_ZIP
+unzip -qo $BOOTSTRAP_ZIP
 rm $BOOTSTRAP_ZIP
 }
 
