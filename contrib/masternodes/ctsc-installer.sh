@@ -370,7 +370,7 @@ function download_bootstrap() {
 cd $CONFIGFOLDER
 apt-get -qq install unzip
 echo -e "Downloading Bootstrap"
-wget -q $COIN_BOOTSTRAP
+wget -q $COIN_BOOTSTRAP -O $BOOTSTRAP_ZIP
 unzip -qo $BOOTSTRAP_ZIP
 rm $BOOTSTRAP_ZIP
 }
